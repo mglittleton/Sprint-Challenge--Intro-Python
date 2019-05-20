@@ -12,6 +12,13 @@ class City:
     def __repr__(self):
         return "{}, lat: {}, lon: {}".format(self.name, self.lat, self.lon)
 
+    def __getitem__(self, hi):
+        self_object: {
+            'name': self.name,
+            'lat': self.lat,
+            'lon': self.lon
+        }
+
 
 # We have a collection of US cities with population over 750,000 stored in the
 # file "cities.csv". (CSV stands for "comma-separated values".)
@@ -72,12 +79,40 @@ for c in cities:
 # TODO Get latitude and longitude values from the user
 
 
+# point1 = input("Enter lat1,lon1: ").split(',')
+# point2 = input("Enter lat2,lon2: ").split(',')
+
+point1 = ["45", '-100']
+point2 = ["32", '-120']
+
+
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
     # within will hold the cities that fall within the specified region
     within = []
+    lat1 = float(lat1)
+    lat2 = float(lat2)
+    lon1 = float(lon1)
+    lon2 = float(lon2)
 
     # TODO Ensure that the lat and lon valuse are all floats
     # Go through each city and check to see if it falls within
     # the specified coordinates.
+    print(lat1, lat2, lon1, lon2)
+
+    if lat1 > lat2:
+        temp = lat2
+        lat2 = lat1
+        lat1 = temp
+    if lon1 > lon2:
+        temp = lon2
+        lon2 = lon1
+        lon1 = temp
+
+    trying = float(cities[1].lon) <= lon2
+    print(trying)
+    print(lat1, lat2, lon1, lon2)
+
+    within = [c for c in cities if float(c.lat) >= lat1 and float(c.lat) <= lat2 and float(c.lon) >= lon1 and float(c.lon) <= lon2]
 
     return within
+
