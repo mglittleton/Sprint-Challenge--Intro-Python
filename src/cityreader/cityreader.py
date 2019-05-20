@@ -25,12 +25,8 @@ class City:
 #
 # Note that the first line of the CSV is header that describes the fields--this
 # should not be loaded into a City object.
-cityList = []
-filename = open("cities.csv", "r")
-csvreader = csv.reader(filename)
-for row in csvreader:
-    cityList.append(row)
-cities = [[c[0], c[3], c[4]] for c in cityList if c[0] != "city"]
+csvreader = csv.reader(open("cities.csv", "r"))
+cities = [[c[0], c[3], c[4]] for c in csvreader if c[0] != 'city']
 
 
 def cityreader(cities=[]):
